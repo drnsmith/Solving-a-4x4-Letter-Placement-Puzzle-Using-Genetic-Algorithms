@@ -1,0 +1,120 @@
+import random
+
+# Step 1: Initialize population
+def initialize_population(initial_placements):
+    population = []
+    for placement in initial_placements:
+        population.append(placement)
+    return population
+
+# Step 2: Define fitness function
+def calculate_fitness(solution):
+    # Calculate fitness score based on conditions
+    fitness_score = 0
+    # Add your fitness calculation logic here
+    return fitness_score
+
+# Step 3: Repeat until termination condition is met
+def genetic_algorithm(population_size, termination_condition, initial_placements, word=None):
+    population = initialize_population(initial_placements)
+    all_populations = []  # Store all populations created
+    
+    # Step 4: Termination condition
+    generation = 1
+    while generation <= termination_condition:
+        # Step 3a: Selection
+        parents = selection(population)
+        
+        # Step 3b: Crossover
+        offspring = crossover(parents)
+        
+        # Step 3c: Mutation
+        mutate(offspring)
+        
+        # Step 3d: Evaluate fitness
+        for solution in offspring:
+            fitness = calculate_fitness(solution)
+        
+        # Step 3e: Replace
+        population = replacement(population, offspring)
+        
+        all_populations.append(population.copy())  # Store the current population
+        
+        generation += 1
+    
+    # Step 5: Output the best solution
+    best_solution = max(population, key=calculate_fitness)
+    display_solution(best_solution, word)
+    return best_solution, all_populations
+
+# Example selection method: Tournament selection
+def selection(population):
+    tournament_size = 2
+    parents = []
+    for _ in range(len(population)):
+        tournament = random.sample(population, tournament_size)
+        winner = max(tournament, key=calculate_fitness)
+        parents.append(winner)
+    return parents
+
+# Example crossover method: Single-point crossover
+def crossover(parents):
+    offspring = []
+    for i in range(0, len(parents), 2):
+        parent1 = parents[i]
+        parent2 = parents[i+1]
+        crossover_point = random.randint(1, len(parent1)-1)
+        child1 = parent1[:crossover_point] + parent2[crossover_point:]
+        child2 = parent2[:crossover_point] + parent1[crossover_point:]
+        offspring.extend([child1, child2])
+    return offspring
+
+# Example mutation method: Random mutation
+def mutate(offspring):
+    mutation_rate = 0.1
+    for solution in offspring:
+        for i in range(len(solution)):
+            if random.random() < mutation_rate:
+                solution[i] = random.choice(['A', 'B', 'C', 'D'])
+
+# Example replacement method: Elitism
+def replacement(population, offspring):
+    population.extend(offspring)
+    population.sort(key=calculate_fitness, reverse=True)
+    return population[:len(population)//2]
+
+# Example display_solution function
+def display_solution(solution, word=None):
+    for i in range(4):
+        for j in range(4):
+            print(solution[i*4 + j], end=' ')
+        print()
+    
+    if word is not None:
+        top_row = ''.join(solution[:4])
+        bottom_row = ''.join(solution[12:])
+        left_column = ''.join(solution[::4])
+        right_column = ''.join(solution[3::4])
+        if word in [top_row, bottom_row, left_column, right_column]:
+            print("Contains the word:", word)
+
+# Step 6: Run the genetic algorithm
+population_size = 50
+termination_condition = 50
+initial_placements = [
+    ['A', 'B', 'C', 'D', 'D', 'C', 'B', 'A', 'A', 'C', 'B', 'D', 'D', 'B', 'C', 'A'],
+    ['B', 'A', 'D', 'C', 'C', 'D', 'A', 'B', 'D', 'C', 'A', 'B', 'B', 'C', 'D', 'A']
+]
+word = 'WORD'
+best_solution, all_populations = genetic_algorithm(population_size, termination_condition, initial_placements, word)
+
+print("Best Solution:")
+display_solution(best_solution, word)
+
+print("\nAll Populations:")
+for i, population in enumerate(all_populations):
+    print("Generation:", i+1)
+    for solution in population:
+        display_solution(solution, word)
+        print()
+    print("-" * 20)
