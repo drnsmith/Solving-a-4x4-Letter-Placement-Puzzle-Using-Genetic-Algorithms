@@ -1,0 +1,45 @@
+1. Initialise population:
+   - Create an initial population of random solutions.
+   - Each solution represents a 4x4 grid with four different letters.
+
+2. Define fitness function:
+   - Evaluate the fitness of each solution based on how well it satisfies the conditions.
+   - Calculate a fitness score for each solution.
+
+3. Repeat until the termination condition is met:
+   a. Selection:
+      - Select parents from the population based on their fitness scores.
+      - Use selection methods like tournament selection or roulette wheel selection.
+
+   b. Crossover:
+      - Perform crossover between selected parents to create offspring.
+      - Use crossover techniques like single-point crossover or uniform crossover.
+
+   c. Mutation:
+      - Apply mutation to the offspring by randomly changing letters in the grid.
+      - Mutation helps introduce new variations in the population.
+
+   d. Evaluate fitness:
+      - Calculate the fitness score for each offspring.
+
+   e. Replace:
+      - Select individuals from the population for replacement.
+      - Use strategies like elitism or generational replacement.
+
+4. Termination:
+   - Check if the termination condition is met.
+   - Termination conditions can be reaching a certain fitness threshold or a maximum number of iterations/generations.
+
+5. Output the best solution:
+   - Select the solution with the highest fitness score as the best solution found.
+
+6. End
+
+References:
+https://towardsdatascience.com/introduction-to-genetic-algorithms-including-example-code-e396e98d8bf3
+https://towardsdatascience.com/genetic-algorithm-implementation-in-python-5ab67bb124a6
+https://www.turing.com/kb/genetic-algorithm-applications-in-ml
+Haupt, R.L. and Haupt, S.E., 2004. Practical genetic algorithms. John Wiley & Sons.
+Katoch, S., Chauhan, S.S. and Kumar, V., 2021. A review on genetic algorithm: past, present, and future. Multimedia tools and applications, 80, pp.8091-8126.
+
+
