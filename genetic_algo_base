@@ -89,9 +89,13 @@ def replacement(population, offspring):
     # Keep the top half of the population as the new population
     return population[:len(population)//2]
 
-# Step 6: Run the genetic algorithm
 population_size = 100
 termination_condition = 100
 best_solution = genetic_algorithm(population_size, termination_condition)
 
-print("Best Solution:", best_solution)
+# Convert the flat list solution into a 2D NumPy array
+solution_array = np.array(best_solution).reshape(4, 4)
+
+# Print the solution in the desired format
+print("Solution:")
+print(solution_array)
