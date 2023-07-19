@@ -1,12 +1,19 @@
+
 1. Initialise population:
-   - Create an initial population of random solutions.
+   - Create an initial population of random solutions while preserving the initial values from the puzzle
    - Each solution represents a 4x4 grid with four different letters.
 
 2. Define fitness function:
    - Evaluate the fitness of each solution based on how well it satisfies the conditions.
    - Calculate a fitness score for each solution.
 
-3. Repeat until the termination condition is met:
+3. Define crossover function:
+    - Perform crossover between two parents to produce two offspring
+
+4. Define mutation function:
+    - Perform mutation on an individual while preserving the initial values from the puzzle
+
+5. Define genetic algorithm. Repeat until the termination condition is met:
    a. Selection:
       - Select parents from the population based on their fitness scores.
       - Use selection methods like tournament selection or roulette wheel selection.
@@ -26,14 +33,15 @@
       - Select individuals from the population for replacement.
       - Use strategies like elitism or generational replacement.
 
-4. Termination:
+6. Termination Solve Sudoku Puzzle:
    - Check if the termination condition is met.
    - Termination conditions can be reaching a certain fitness threshold or a maximum number of iterations/generations.
 
-5. Output the best solution:
+7. Output the best solution:
    - Select the solution with the highest fitness score as the best solution found.
+   - Print the grids of each iteration
 
-6. End
+8. End
 
 References:
 https://towardsdatascience.com/introduction-to-genetic-algorithms-including-example-code-e396e98d8bf3
