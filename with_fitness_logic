@@ -1,0 +1,93 @@
+import random
+import numpy as np
+
+def initialize_population(population_size):
+    population = []
+    for _ in range(population_size):
+        # Create a random solution representing a 4x4 grid with four different letters
+        solution = [random.choice(['A', 'B', 'C', 'D']) for _ in range(16)]
+        population.append(solution)
+    return population
+
+def calculate_fitness(solution):
+    fitness_score = 0
+
+    # Check each row for duplicates
+    for i in range(4):
+        row = solution[i*4:(i+1)*4]
+        if len(row) != len(set(row)):
+            fitness_score -= 1
+
+    # Check each column for duplicates
+    for j in range(4):
+        column = solution[j::4]
+        if len(column) != len(set(column)):
+            fitness_score -= 1
+
+    # Check each 2x2 sub-grid for duplicates
+    for i in range(0, 4, 2):
+        for j in range(0, 4, 2):
+            subgrid = solution[i*4+j:i*4+j+2] + solution[(i+1)*4+j:(i+1)*4+j+2]
+            if len(subgrid) != len(set(subgrid)):
+                fitness_score -= 1
+
+    return fitness_score
+
+def genetic_algorithm(population_size, termination_condition):
+    population = initialize_population(population_size)
+    
+    generation = 1
+    while generation <= termination_condition:
+        parents = selection(population)
+        offspring = crossover(parents)
+        mutate(offspring)
+        for solution in offspring:
+            fitness = calculate_fitness(solution)
+        population = replacement(population, offspring)
+        generation += 1
+    
+    best_solution = max(population, key=calculate_fitness)
+    return best_solution
+
+def selection(population):
+    tournament_size = 2
+    parents = []
+    for _ in range(len(population)):
+        tournament = random.sample(population, tournament_size)
+        winner = max(tournament, key=calculate_fitness)
+        parents.append(winner)
+    return parents
+
+def crossover(parents):
+    offspring = []
+    for i in range(0, len(parents), 2):
+        parent1 = parents[i]
+        parent2 = parents[i+1]
+        crossover_point = random.randint(1, len(parent1)-1)
+        child1 = parent1[:crossover_point] + parent2[crossover_point:]
+        child2 = parent2[:crossover_point] + parent1[crossover_point:]
+        offspring.extend([child1, child2])
+    return offspring
+
+def mutate(offspring):
+    mutation_rate = 0.1
+    for solution in offspring:
+        for i in range(len(solution)):
+            if random.random() < mutation_rate:
+                solution[i] = random.choice(['A', 'B', 'C', 'D'])
+
+def replacement(population, offspring):
+    population.extend(offspring)
+    population.sort(key=calculate_fitness, reverse=True)
+    return population[:len(population)//2]
+
+population_size = 100
+termination_condition = 100
+best_solution = genetic_algorithm(population_size, termination_condition)
+
+# Convert the flat list solution into a 2D NumPy array
+solution_array = np.array(best_solution).reshape(4, 4)
+
+# Print the solution in the desired format
+print("Solution:")
+print(solution_array)
