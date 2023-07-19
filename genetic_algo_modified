@@ -1,11 +1,15 @@
 import random
+import numpy as np
 
 # Step 1: Initialize population
-def initialize_population(initial_placements):
+def initialize_population(population_size):
     population = []
-    for placement in initial_placements:
-        population.append(placement)
+    for _ in range(population_size):
+        # Create a random solution representing a 4x4 grid with four different letters
+        solution = [random.choice(['A', 'B', 'C', 'D']) for _ in range(16)]
+        population.append(solution)
     return population
+
 
 # Step 2: Define fitness function
 def calculate_fitness(solution):
@@ -15,9 +19,8 @@ def calculate_fitness(solution):
     return fitness_score
 
 # Step 3: Repeat until termination condition is met
-def genetic_algorithm(population_size, termination_condition, initial_placements, word=None):
-    population = initialize_population(initial_placements)
-    all_populations = []  # Store all populations created
+def genetic_algorithm(population_size, termination_condition):
+    population = initialize_population(population_size)
     
     # Step 4: Termination condition
     generation = 1
@@ -38,21 +41,21 @@ def genetic_algorithm(population_size, termination_condition, initial_placements
         # Step 3e: Replace
         population = replacement(population, offspring)
         
-        all_populations.append(population.copy())  # Store the current population
-        
         generation += 1
     
     # Step 5: Output the best solution
     best_solution = max(population, key=calculate_fitness)
-    display_solution(best_solution, word)
-    return best_solution, all_populations
+    return best_solution
+
 
 # Example selection method: Tournament selection
 def selection(population):
     tournament_size = 2
     parents = []
     for _ in range(len(population)):
+        # Randomly select tournament_size individuals from the population
         tournament = random.sample(population, tournament_size)
+        # Choose the individual with the highest fitness score as the winner
         winner = max(tournament, key=calculate_fitness)
         parents.append(winner)
     return parents
@@ -63,7 +66,9 @@ def crossover(parents):
     for i in range(0, len(parents), 2):
         parent1 = parents[i]
         parent2 = parents[i+1]
+        # Select a random crossover point
         crossover_point = random.randint(1, len(parent1)-1)
+        # Create two children by combining the genetic material of the parents
         child1 = parent1[:crossover_point] + parent2[crossover_point:]
         child2 = parent2[:crossover_point] + parent1[crossover_point:]
         offspring.extend([child1, child2])
@@ -74,47 +79,51 @@ def mutate(offspring):
     mutation_rate = 0.1
     for solution in offspring:
         for i in range(len(solution)):
+            # Randomly mutate each gene with a probability of mutation_rate
             if random.random() < mutation_rate:
                 solution[i] = random.choice(['A', 'B', 'C', 'D'])
 
 # Example replacement method: Elitism
 def replacement(population, offspring):
+    # Combine the current population and offspring
     population.extend(offspring)
+    # Sort the combined population based on fitness scores in descending order
     population.sort(key=calculate_fitness, reverse=True)
+    # Keep the top half of the population as the new population
     return population[:len(population)//2]
 
-# Example display_solution function
-def display_solution(solution, word=None):
+
+def generate_valid_matrix():
+    # Generate a random matrix
+    matrix = np.zeros((4, 4), dtype='U1')
+    LETTERS = ['A', 'B', 'C', 'D']
     for i in range(4):
         for j in range(4):
-            print(solution[i*4 + j], end=' ')
-        print()
-    
-    if word is not None:
-        top_row = ''.join(solution[:4])
-        bottom_row = ''.join(solution[12:])
-        left_column = ''.join(solution[::4])
-        right_column = ''.join(solution[3::4])
-        if word in [top_row, bottom_row, left_column, right_column]:
-            print("Contains the word:", word)
+            if LETTERS:
+                random_letter = random.choice(LETTERS)
+                matrix[i][j] = random_letter
+                LETTERS.remove(random_letter)  # Remove the selected letter from the list
+            else:
+                # If no unique letters left, populate the rest of the cells randomly
+                matrix[i][j] = random.choice(['A', 'B', 'C', 'D'])
+    return matrix
 
-# Step 6: Run the genetic algorithm
-population_size = 50
-termination_condition = 50
-initial_placements = [
-    ['A', 'B', 'C', 'D', 'D', 'C', 'B', 'A', 'A', 'C', 'B', 'D', 'D', 'B', 'C', 'A'],
-    ['B', 'A', 'D', 'C', 'C', 'D', 'A', 'B', 'D', 'C', 'A', 'B', 'B', 'C', 'D', 'A']
-]
-word = 'WORD'
-best_solution, all_populations = genetic_algorithm(population_size, termination_condition, initial_placements, word)
+def generate_multiple_initial_grids(num_attempts):
+    initial_grids = []
+    for attempt in range(num_attempts):
+        matrix = generate_valid_matrix()
+        initial_grids.append(matrix)
+    return initial_grids
 
-print("Best Solution:")
-display_solution(best_solution, word)
+population_size = 100
+termination_condition = 100
+num_attempts = 5
+initial_grids = generate_multiple_initial_grids(num_attempts)
 
-print("\nAll Populations:")
-for i, population in enumerate(all_populations):
-    print("Generation:", i+1)
-    for solution in population:
-        display_solution(solution, word)
-        print()
-    print("-" * 20)
+for attempt, initial_grid in enumerate(initial_grids):
+    print(f"Attempt {attempt+1} - Solving with initial grid:")
+    print(initial_grid)
+    best_solution = genetic_algorithm(population_size, termination_condition)
+    print("Best Solution:")
+    print(np.array(best_solution).reshape(4, 4))
+    print()
