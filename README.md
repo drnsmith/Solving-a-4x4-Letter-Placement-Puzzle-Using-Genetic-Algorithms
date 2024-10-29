@@ -1,45 +1,58 @@
-# Solving-a-4x4-Letter-Placement-Puzzle-Using-Genetic-Algorithms
-A software application that solves a puzzle game similar to Sudoku using genetic algorithms (GAs). 
+# Solving a 4x4 Letter Placement Puzzle Using Genetic Algorithms
+An application that utilizes genetic algorithms (GAs) to solve a 4x4 letter puzzle game similar to Sudoku.
 
 ## Table of Contents
-1. [Description](#description)
-2. [Technologies](#technologies)
-3. [Project](#project)
-4. [Usage](#usage)
-5. [Implementation](#implementation)
-6. [Support](#support)
-7. [Credits](#credits)
+1. [Project Overview](#project-overview)
+2. [Technologies Used](#technologies-used)
+3. [How It Works](#how-it-works)
+4. [Getting Started](#getting-started)
+5. [Implementation Details](#implementation-details)
+6. [Usage](#usage)
+7. [Support](#support)
+8. [Acknowledgments](#acknowledgments)
 
-### description
-The purpose of this code is to develop a software application that solves a puzzle game similar to Sudoku using GAs. The objective of the puzzle is to fill a 4x4 grid with four different letters, ensuring that each column, each row, and each of the four sub-grids of size 2x2 contain each letter only once. The encoding of input and output data, the selection of the fitness function, and the implementation of genetic operators are discussed in the report.
+### Project Overview
+This project solves a 4x4 letter placement puzzle using genetic algorithms. The objective is to fill a 4x4 grid with four distinct letters, ensuring each row, column, and each 2x2 sub-grid includes every letter exactly once. Similar to Sudoku, the challenge lies in arranging the letters without repeating them in any row, column, or 2x2 section. This README explains the implementation, fitness functions, genetic operators, and overall approach of the genetic algorithm used.
 
-### technologies
+### Technologies Used
+The following technologies were used in this project:
 
-A list of technologies used within the project:
+* **[Python](https://www.python.org/downloads)**: Version 3.11.0, used as the main programming language for implementing the genetic algorithm.
+* **[Visual Studio Code](https://visualstudio.microsoft.com/es)**: Version 1.73.v, as the integrated development environment (IDE) for writing and debugging the code.
 
-* [Python](https://www.python.org/downloads): Version 3.11.0 
-* [visualstudio](https://visualstudio.microsoft.com/es):Version: 1.73.v 
+### How It Works
+- The program uses genetic algorithms to find solutions to the 4x4 puzzle by simulating a population of possible puzzle states and evolving them over generations.
+- The genetic algorithm employs selection, crossover, and mutation to improve the solutions, using a fitness function that scores solutions based on how close they are to meeting the puzzle's constraints.
+- The goal of the genetic algorithm is to maximise the fitness score, which represents a correctly completed puzzle grid.
+- Progress is visualised through each generation, showing how the algorithm converges on valid solutions.
 
-### project
-To represent the puzzle configuration and solve it using genetic algorithms, an appropriate encoding scheme is required. This code discusses the implementation and analysis of a GA to solve a Letters puzzle, in which the goal is is to fill a 4x4 grid with four different letters so that certain constraints are met (i.e., each row, column, and 2x2 sub-grid contains each letter exactly once).
 
-### usage
+### Getting Started
+To run this project:
 
-To run this program you have to use the Genetich Algorithm python code provided with this project.
+```bash
+# Clone this repository
+git clone [YOUR REPO URL]
+```
+# Navigate to the directory
+```
+cd [YOUR REPO NAME]
+```
+# Run the Genetic Algorithm Python script
+```
+python main.py
+```
+   
+### Usage
+To run this program, use the genetic algorithm Python code provided in this project. The project automatically encodes the puzzle configuration and performs the evolutionary process to find a solution.
 
-### implementation
-The GAs successfully solve the puzzle with different initial grid placements and provide solutions that satisfy the specified conditions. The population's progress is shown throughout the generations, allowing for a better understanding of how the GA evolves towards finding a solution.
+### Implementation Details
+ - Encoding: Each grid position in the 4x4 puzzle is encoded, allowing the genetic algorithm to handle it as a chromosome.
+ - Fitness Function: Measures the number of unique letters in each row, column, and sub-grid, rewarding grids that meet the puzzle constraints.
+ - Genetic Operators:
+ - Selection: Chooses the fittest individuals to parent the next generation.
+ - Crossover: Combines genes from two parents to produce offspring.
+ - Mutation: Introduces random changes to maintain diversity in the population.
 
-### support
-To get support or contribute to the project please mail: 
-
-l.atristain@liverpool.ac.uk
-t.rakamazi@liverpool.ac.uk
-n.smith16@liverpool.ac.uk
-
-### credits
-Thanks for the support to the authors of this project:
-
-Atristain, Luis;
-Ramazaki, Tamas;
-Smith, Natalya;
+### Acknowledgments
+A big thanks to project collaborators Luis Atristain and Tamas Ramazaki for their valuable contributions and insights, which made this project possible.
