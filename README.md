@@ -1,15 +1,6 @@
 # Solving a 4x4 Letter Placement Puzzle Using Genetic Algorithms
 An application that utilizes genetic algorithms (GAs) to solve a 4x4 letter puzzle game similar to Sudoku.
 
-## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Technologies Used](#technologies-used)
-3. [How It Works](#how-it-works)
-4. [Getting Started](#getting-started)
-5. [Implementation Details](#implementation-details)
-6. [Usage](#usage)
-7. [Support](#support)
-8. [Acknowledgments](#acknowledgments)
 
 ### Project Overview
 This project solves a 4x4 letter placement puzzle using genetic algorithms. The objective is to fill a 4x4 grid with four distinct letters, ensuring each row, column, and each 2x2 sub-grid includes every letter exactly once. Similar to Sudoku, the challenge lies in arranging the letters without repeating them in any row, column, or 2x2 section. This README explains the implementation, fitness functions, genetic operators, and overall approach of the genetic algorithm used.
