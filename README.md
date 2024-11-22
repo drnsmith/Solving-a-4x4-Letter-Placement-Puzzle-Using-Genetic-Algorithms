@@ -1,4 +1,4 @@
-# Solving a 4x4 Letter Placement Puzzle Using Genetic Algorithms
+## Solving a 4x4 Letter Placement Puzzle Using Genetic Algorithms
 An application that utilises genetic algorithms (GAs) to solve a 4x4 letter puzzle game similar to Sudoku.
 
 ![4x4 Puzzle Image](https://github.com/drnsmith/Solving-a-4x4-Letter-Placement-Puzzle-Using-Genetic-Algorithms/blob/main/hans-peter-gauster-3y1zF4hIPCg-unsplash.jpg?raw=true)  
@@ -20,18 +20,18 @@ The following technologies were used in this project:
 - Progress is visualised through each generation, showing how the algorithm converges on valid solutions.
 
 
-### Getting Started
+#### Getting Started
 To run this project:
 
 ```bash
 # Clone this repository
 git clone [YOUR REPO URL]
 ```
-# Navigate to the directory
+#### Navigate to the directory
 ```
 cd [YOUR REPO NAME]
 ```
-# Run the Genetic Algorithm Python script
+#### Run the Genetic Algorithm Python script
 ```
 python main.py
 ```
