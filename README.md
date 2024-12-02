@@ -40,12 +40,17 @@ python main.py
 To run this program, use the genetic algorithm Python code provided in this project. The project automatically encodes the puzzle configuration and performs the evolutionary process to find a solution.
 
 ### Implementation Details
- - Encoding: Each grid position in the 4x4 puzzle is encoded, allowing the genetic algorithm to handle it as a chromosome.
- - Fitness Function: Measures the number of unique letters in each row, column, and sub-grid, rewarding grids that meet the puzzle constraints.
- - Genetic Operators:
- - Selection: Chooses the fittest individuals to parent the next generation.
- - Crossover: Combines genes from two parents to produce offspring.
- - Mutation: Introduces random changes to maintain diversity in the population.
+ - **Encoding**: Each grid position in the 4x4 puzzle is encoded, allowing the genetic algorithm to handle it as a chromosome.
 
-### Acknowledgments
+ - **Fitness Function**: Measures the number of unique letters in each row, column, and sub-grid, rewarding grids that meet the puzzle constraints.
+
+ - **Genetic Operators:**
+ - **Selection**: Chooses the fittest individuals to parent the next generation.
+ - **Crossover**: Combines genes from two parents to produce offspring.
+ - **Mutation**: Introduces random changes to maintain diversity in the population.
+
+### Contributing
 A big thanks to project collaborators Luis Atristain and Tamas Ramazaki for their valuable contributions and insights, which made this project possible.
+
+### License
+Distributed under the MIT License. See LICENSE for more information.
