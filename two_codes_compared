@@ -1,0 +1,32 @@
+## We have written 2 codes (L=Luis and N= Nat) that are using genetic algorithms (GA) to solve the puzzle. 
+## They share the same underlying approach but differ in their implementation details.
+
+1. Initial Population Generation:
+
+- L uses the function `generate_individual(puzzle)` to create a random individual (grid) while preserving the initial values from the puzzle. 
+  It fills the empty cells with random choices from the `TARGET_NUMBERS`.
+
+- N directly generates a random solution representing a 4x4 grid with four different letters ('A', 'B', 'C', 'D') for each individual in the population.
+
+L has a more sophisticated approach to generating initial individuals, preserving the initial values of the puzzle.
+
+2. Fitness Calculation:
+
+- In L, the `fitness` function checks each row, column, and 2x2 sub-grid for duplicates and assigns a fitness score based on the number of duplicates found.
+
+- N assigns a fitness score based on the number of duplicates found in each row, column, and 2x2 sub-grid, but it subtracts 1 for each duplicate found.
+
+L has a better fitness calculation as it explicitly calculates the number of duplicates in each row, column, and 2x2 sub-grid without subtracting 1 for each duplicate.
+
+3. Genetic Operations (Crossover and Mutation):
+
+- Both codes use similar crossover and mutation methods: they perform single-point crossover and random mutation with a probability of 0.1 for each gene in the offspring.
+
+4. Termination and Best Solution:
+
+- Both codes use a termination condition to stop the genetic algorithm after a certain number of generations: they select the best solution (individual) in the final population as the output.
+
+5. Conclusion:
+
+L seems to have a better approach to generating initial individuals, and it has a more straightforward fitness calculation without subtracting 1 for each duplicate. 
+N is also functional but might be slightly less efficient in generating initial individuals. Hence, L appears to be better suited for the given task, but both codes implement the GA to solve the puzzle.
