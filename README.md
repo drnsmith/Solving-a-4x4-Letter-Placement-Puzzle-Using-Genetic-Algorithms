@@ -43,6 +43,15 @@ To run this program, use the genetic algorithm Python code provided in this proj
  - **Mutation**: Introduces random changes to maintain diversity in the population.
 
 ---
+
+### **Productisation**
+This project can be extended into an **interactive puzzle-solving platform** for education and research. By integrating a **web-based interface** or a mobile app, users can **experiment with different genetic algorithm parameters** and visualise how solutions evolve in real-time. Additionally, the system can be expanded to solve **larger Sudoku-like puzzles**, making it a useful tool for AI research and algorithmic learning. The solution can also be packaged as a **Python library** for developers interested in incorporating evolutionary computing techniques into their applications.
+
+### **Monetisation**
+The project can be monetised through a **freemium puzzle-solving application**, where users can access basic features for free and pay for **advanced algorithm configurations, real-time visual analytics, and competitive puzzle challenges**. Additionally, licensing the **genetic algorithm solver as an API or SDK** to ed-tech companies and AI research institutions could generate revenue. Another avenue is offering **paid workshops or courses** on genetic algorithms using this puzzle as a practical learning case.
+
+---
+
 ### Contributing
 A big thanks to project collaborators Luis Atristain and Tamas Ramazaki for their valuable contributions and insights, which made this project possible.
 
